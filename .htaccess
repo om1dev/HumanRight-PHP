@@ -1,15 +1,19 @@
 Options -Indexes
+RewriteEngine On
+RewriteBase /demo/
+
+# Remove .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 # Protect sensitive directories
+RewriteRule ^config/ - [F,L]
+RewriteRule ^includes/ - [F,L]
+RewriteRule ^vendor/ - [F,L]
+
+# Block sensitive files
 <FilesMatch "\.(env|json|lock|md)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
-
-# Protect config and includes
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteRule ^config/ - [F,L]
-    RewriteRule ^includes/ - [F,L]
-    RewriteRule ^vendor/ - [F,L]
-</IfModule>

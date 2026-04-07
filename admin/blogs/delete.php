@@ -13,5 +13,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         flash('error', 'Could not delete blog.');
     }
 }
-header('Location: ' . SITE_URL . '/admin/blogs/index.php');
+header('Location: ' . SITE_URL . '/admin/blogs/');
 exit;

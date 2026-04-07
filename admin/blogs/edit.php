@@ -3,12 +3,12 @@ require_once __DIR__ . '/../../includes/init.php';
 requireAdmin();
 
 $id = sanitize($_GET['id'] ?? '');
-if (!$id) { header('Location: ' . SITE_URL . '/admin/blogs/index.php'); exit; }
+if (!$id) { header('Location: ' . SITE_URL . '/admin/blogs/'); exit; }
 
 try {
     $blog = $db->blogs->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
 } catch (Exception $e) { $blog = null; }
-if (!$blog) { header('Location: ' . SITE_URL . '/admin/blogs/index.php'); exit; }
+if (!$blog) { header('Location: ' . SITE_URL . '/admin/blogs/'); exit; }
 
 $pageTitle = 'Edit Blog';
 $error = '';
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ['$set' => $update]
         );
         flash('success', 'Blog updated successfully.');
-        header('Location: ' . SITE_URL . '/admin/blogs/index.php');
+        header('Location: ' . SITE_URL . '/admin/blogs/');
         exit;
     }
 }

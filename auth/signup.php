@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/init.php';
-if (isLoggedIn()) { header('Location: ' . SITE_URL . '/index.php'); exit; }
+if (isLoggedIn()) { header('Location: ' . SITE_URL . '/'); exit; }
 
 $pageTitle = 'Sign Up — ' . SITE_NAME;
 $error = '';
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'created_at' => new MongoDB\BSON\UTCDateTime(),
         ]);
         flash('success', 'Account created! Please login.');
-        header('Location: ' . SITE_URL . '/auth/login.php');
+        header('Location: ' . SITE_URL . '/auth/login');
         exit;
     }
 }

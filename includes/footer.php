@@ -1,4 +1,6 @@
 </main>
+<!-- Event Popup -->
+<?php include __DIR__ . '/event-popup.php'; ?>
 <!-- Footer -->
 <footer class="bg-blue-900 text-white text-center py-5 text-sm mt-8">
   <p>&copy; <?= date('Y') ?> <?= SITE_NAME ?>. All rights reserved.</p>

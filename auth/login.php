@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/init.php';
-if (isLoggedIn()) { header('Location: ' . SITE_URL . '/index.php'); exit; }
+if (isLoggedIn()) { header('Location: ' . SITE_URL . '/'); exit; }
 
 $pageTitle = 'Login — ' . SITE_NAME;
 $error     = '';
@@ -12,13 +12,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $user = $db->users->findOne(['email' => $email]);
     if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id']  = (string)$user['_id'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['is_admin'] = false;
-        header('Location: ' . SITE_URL . '/index.php');
-        exit;
+
+        // Check suspension
+        if (!empty($user['suspended_until'])) {
+            $until = $user['suspended_until']->toDateTime()->getTimestamp();
+            if ($until > time()) {
+                $diff = $until - time();
+                if ($diff >= 86400)      $timeLeft = round($diff / 86400, 1) . ' day(s)';
+                elseif ($diff >= 3600)   $timeLeft = round($diff / 3600, 1) . ' hour(s)';
+                else                     $timeLeft = round($diff / 60) . ' minute(s)';
+                $error = "Your account is suspended. Try again in {$timeLeft}.";
+            } else {
+                // Suspension expired — auto-clear and login
+                $db->users->updateOne(
+                    ['_id' => $user['_id']],
+                    ['$unset' => ['suspended_until' => '']]
+                );
+                goto login_success;
+            }
+        } else {
+            login_success:
+            $_SESSION['user_id']  = (string)$user['_id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['is_admin'] = false;
+            header('Location: ' . SITE_URL . '/');
+            exit;
+        }
+    } else {
+        $error = 'Invalid email or password.';
     }
-    $error = 'Invalid email or password.';
 }
 
 include __DIR__ . '/../includes/header.php';
@@ -34,7 +56,9 @@ include __DIR__ . '/../includes/header.php';
       <div class="bg-green-100 text-green-700 px-4 py-3 rounded-lg mb-4 text-sm"><?= $success ?></div>
     <?php endif; ?>
     <?php if ($error): ?>
-      <div class="bg-red-100 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm"><?= $error ?></div>
+      <div class="bg-red-100 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm">
+        <i class="fa-solid fa-ban mr-1"></i><?= $error ?>
+      </div>
     <?php endif; ?>
     <form method="POST" class="space-y-4">
       <div>
@@ -52,7 +76,7 @@ include __DIR__ . '/../includes/header.php';
       </button>
     </form>
     <p class="text-center text-sm text-gray-500 mt-5">
-      Don't have an account? <a href="<?= SITE_URL ?>/auth/signup.php" class="text-blue-700 font-semibold hover:underline">Sign Up</a>
+      Don't have an account? <a href="<?= SITE_URL ?>/auth/signup" class="text-blue-700 font-semibold hover:underline">Sign Up</a>
     </p>
   </div>
 </div>

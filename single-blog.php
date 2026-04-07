@@ -2,10 +2,10 @@
 require_once __DIR__ . '/includes/init.php';
 
 $slug = sanitize($_GET['slug'] ?? '');
-if (!$slug) { header('Location: ' . SITE_URL . '/blog.php'); exit; }
+if (!$slug) { header('Location: ' . SITE_URL . '/blog'); exit; }
 
 $blog = $db->blogs->findOne(['slug' => $slug, 'published' => true]);
-if (!$blog) { header('Location: ' . SITE_URL . '/blog.php'); exit; }
+if (!$blog) { header('Location: ' . SITE_URL . '/blog'); exit; }
 
 $blogId = (string)$blog['_id'];
 $pageTitle = sanitize($blog['title']) . ' — ' . SITE_NAME;
@@ -22,14 +22,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isLoggedIn()) {
             'user_id'    => $_SESSION['user_id'],
             'username'   => $_SESSION['username'],
             'body'       => htmlspecialchars($body, ENT_QUOTES, 'UTF-8'),
+            'approved'   => false,
             'created_at' => new MongoDB\BSON\UTCDateTime(),
         ]);
-        $commentSuccess = 'Comment posted!';
+        $commentSuccess = 'Comment submitted and awaiting approval.';
     }
 }
 
 $comments = $db->comments->find(
-    ['blog_id' => $blogId],
+    ['blog_id' => $blogId, 'approved' => true],
     ['sort' => ['created_at' => -1]]
 )->toArray();
 

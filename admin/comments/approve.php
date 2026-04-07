@@ -5,10 +5,13 @@ requireAdmin();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = sanitize($_POST['id'] ?? '');
     try {
-        $db->comments->deleteOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
-        flash('success', 'Comment deleted.');
+        $db->comments->updateOne(
+            ['_id' => new MongoDB\BSON\ObjectId($id)],
+            ['$set' => ['approved' => true]]
+        );
+        flash('success', 'Comment approved.');
     } catch (Exception $e) {
-        flash('error', 'Could not delete comment.');
+        flash('error', 'Could not approve comment.');
     }
 }
 header('Location: ' . SITE_URL . '/admin/comments/');

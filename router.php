@@ -1,13 +1,18 @@
 <?php
-$uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+// Get URI — handle both direct and rewritten requests
+$uri = $_SERVER['REQUEST_URI'] ?? '/';
+$uri = urldecode(parse_url($uri, PHP_URL_PATH));
 
-// Strip /demo prefix if running locally in subdirectory
+// Strip /demo prefix for local development
 $uri = preg_replace('#^/demo#', '', $uri);
-if ($uri === '') $uri = '/';
+if ($uri === '' || $uri === false) $uri = '/';
 
 // Serve static files directly
 if (preg_match('/\.(css|js|png|jpg|jpeg|gif|webp|ico|svg|woff|woff2|ttf|map)$/', $uri)) {
-    return false;
+    $file = __DIR__ . $uri;
+    if (file_exists($file)) {
+        return false;
+    }
 }
 
 $routes = [

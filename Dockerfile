@@ -10,24 +10,30 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     unzip \
     curl \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
-# Install MongoDB PHP extension
-RUN pecl install mongodb && docker-php-ext-enable mongodb
+# Update PECL channel and install MongoDB extension
+RUN pecl channel-update pecl.php.net \
+    && pecl install mongodb-1.16.2 \
+    && docker-php-ext-enable mongodb
 
 # Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy project files
-COPY . .
+# Copy composer files first for better caching
+COPY composer.json ./
 
 # Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --no-scripts
 
-# Apache config
+# Copy rest of project files
+COPY . .
+
+# Apache virtual host config
 RUN echo '<VirtualHost *:80>\n\
     DocumentRoot /var/www/html\n\
     <Directory /var/www/html>\n\

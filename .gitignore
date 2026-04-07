@@ -1,6 +1,5 @@
 vendor/
 *.phar
-composer.lock
 .env
 seed.php
 test_img.jpg

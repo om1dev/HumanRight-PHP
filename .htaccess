@@ -1,11 +1,14 @@
 Options -Indexes
 RewriteEngine On
-RewriteBase /demo/
 
-# Remove .php extension
+# Serve static files directly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Route everything through router.php
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^([^\.]+)$ $1.php [NC,L]
+RewriteRule ^ router.php [QSA,L]
 
 # Protect sensitive directories
 RewriteRule ^config/ - [F,L]
@@ -13,7 +16,7 @@ RewriteRule ^includes/ - [F,L]
 RewriteRule ^vendor/ - [F,L]
 
 # Block sensitive files
-<FilesMatch "\.(env|json|lock|md)$">
+<FilesMatch "\.(env|lock|md|phar)$">
     Order allow,deny
     Deny from all
 </FilesMatch>

@@ -1,4 +1,4 @@
-FROM php:8.0-apache
+FROM php:8.2-apache
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
@@ -15,9 +15,6 @@ RUN apt-get update && apt-get install -y \
 # Install MongoDB PHP extension
 RUN pecl install mongodb && docker-php-ext-enable mongodb
 
-# Install curl extension
-RUN docker-php-ext-install curl
-
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -30,7 +27,7 @@ COPY . .
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Apache config — allow .htaccess and set document root
+# Apache config
 RUN echo '<VirtualHost *:80>\n\
     DocumentRoot /var/www/html\n\
     <Directory /var/www/html>\n\

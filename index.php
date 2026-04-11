@@ -147,14 +147,22 @@ include __DIR__ . '/includes/header.php';
     <!-- Left: image collage -->
     <div class="relative sr-l">
       <div class="grid grid-cols-2 gap-3">
-        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80&auto=format&fit=crop"
-          alt="Community gathering" class="rounded-2xl w-full h-52 object-cover shadow-md">
-        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&auto=format&fit=crop"
-          alt="Women leadership" class="rounded-2xl w-full h-52 object-cover shadow-md mt-8">
-        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80&auto=format&fit=crop"
-          alt="Global development" class="rounded-2xl w-full h-44 object-cover shadow-md -mt-4">
-        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&q=80&auto=format&fit=crop"
-          alt="Advocacy work" class="rounded-2xl w-full h-44 object-cover shadow-md mt-4">
+        <div class="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1591189863430-ab87e120f312?w=600&q=80&auto=format&fit=crop"
+            alt="Human rights march" class="w-full h-full object-cover">
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-md aspect-[4/3] mt-8">
+          <img src="https://images.unsplash.com/photo-1607748862156-7c548e7e98f4?w=600&q=80&auto=format&fit=crop"
+            alt="Women empowerment" class="w-full h-full object-cover">
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&q=80&auto=format&fit=crop"
+            alt="Community solidarity" class="w-full h-full object-cover">
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-md aspect-[4/3] -mt-8">
+          <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=600&q=80&auto=format&fit=crop"
+            alt="Advocacy and justice" class="w-full h-full object-cover">
+        </div>
       </div>
       <!-- Overlay badge -->
       <div class="absolute -bottom-4 -right-4 bg-ink text-white rounded-2xl px-5 py-4 shadow-xl">
@@ -340,18 +348,28 @@ include __DIR__ . '/includes/header.php';
 <!-- ══════════════════════════════════════════
      PULL QUOTE
 ══════════════════════════════════════════ -->
-<section class="py-24 px-5 sm:px-8 bg-blush">
-  <div class="max-w-4xl mx-auto text-center sr">
-    <div class="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-8">
-      <i class="fa-solid fa-quote-left text-accent text-xl"></i>
+<section class="relative py-28 px-5 sm:px-8 overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?w=1800&q=80&auto=format&fit=crop"
+      alt="Justice background" class="w-full h-full object-cover object-center">
+    <!-- Dark overlay so text is readable -->
+    <div class="absolute inset-0 bg-ink/75"></div>
+    <!-- Subtle vignette -->
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/30 via-transparent to-ink/30"></div>
+  </div>
+
+  <div class="relative max-w-4xl mx-auto text-center sr">
+    <div class="w-14 h-14 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center mx-auto mb-8">
+      <i class="fa-solid fa-quote-left text-white text-xl"></i>
     </div>
-    <blockquote class="font-serif text-3xl md:text-4xl text-ink leading-tight italic">
+    <blockquote class="font-serif text-3xl md:text-4xl text-white leading-tight italic">
       "Justice is not charity. It is the recognition of every person's inherent worth and the structural commitment to honour it."
     </blockquote>
     <div class="flex items-center justify-center gap-3 mt-8">
-      <div class="h-px w-12 bg-accent/40"></div>
-      <p class="text-accent font-semibold text-xs tracking-widest uppercase"><?= SITE_NAME ?> Manifesto</p>
-      <div class="h-px w-12 bg-accent/40"></div>
+      <div class="h-px w-12 bg-white/30"></div>
+      <p class="text-white/70 font-semibold text-xs tracking-widest uppercase"><?= SITE_NAME ?> Manifesto</p>
+      <div class="h-px w-12 bg-white/30"></div>
     </div>
   </div>
 </section>

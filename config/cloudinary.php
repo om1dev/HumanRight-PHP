@@ -1,7 +1,9 @@
 <?php
-define('CLOUDINARY_CLOUD_NAME', getenv('CLOUDINARY_CLOUD_NAME') ?: 'deq5qb9vv');
-define('CLOUDINARY_API_KEY',    getenv('CLOUDINARY_API_KEY')    ?: '498657542632958');
-define('CLOUDINARY_API_SECRET', getenv('CLOUDINARY_API_SECRET') ?: 'OnD-3ARGFevxoFO7WKwJUHFo1-Q');
+require_once __DIR__ . '/env.php';
+
+define('CLOUDINARY_CLOUD_NAME', getenv('CLOUDINARY_CLOUD_NAME') ?: '');
+define('CLOUDINARY_API_KEY',    getenv('CLOUDINARY_API_KEY')    ?: '');
+define('CLOUDINARY_API_SECRET', getenv('CLOUDINARY_API_SECRET') ?: '');
 
 function uploadToCloudinary(string $filePath, string $folder = 'humanrights/users'): string {
     $timestamp = time();

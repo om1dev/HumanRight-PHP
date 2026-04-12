@@ -23,7 +23,7 @@ include __DIR__ . '/../partials/header.php';
     <i class="fa-solid fa-arrow-left mr-1"></i> Back to Users
   </a>
 
-  <div class="grid md:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <!-- Profile Card -->
     <div class="md:col-span-1">
       <div class="bg-white rounded-2xl shadow p-6 text-center">

@@ -1,6 +1,8 @@
 <?php
+require_once __DIR__ . '/env.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$mongoUri    = getenv('MONGODB_URI') ?: 'mongodb+srv://tejasmehar7_db_user:Admin1234@cluster0.9fl0gp4.mongodb.net/?appName=Cluster0';
+$mongoUri    = getenv('MONGODB_URI') ?: 'mongodb://localhost:27017';
+$mongoDb     = getenv('MONGODB_DB')  ?: 'humanrights_db';
 $mongoClient = new MongoDB\Client($mongoUri);
-$db          = $mongoClient->selectDatabase('humanrights_db');
+$db          = $mongoClient->selectDatabase($mongoDb);

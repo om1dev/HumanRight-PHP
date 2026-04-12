@@ -70,7 +70,7 @@ include __DIR__ . '/../partials/header.php';
 
     <div class="bg-white rounded-2xl shadow p-6 space-y-4">
       <h3 class="font-semibold text-gray-700">Blog Settings</h3>
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label class="text-sm font-medium text-gray-700">Category</label>
           <input type="text" name="category" value="<?= sanitize($_POST['category'] ?? '') ?>"

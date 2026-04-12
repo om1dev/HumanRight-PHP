@@ -24,8 +24,8 @@ include __DIR__ . '/../partials/header.php';
   <div class="bg-red-100 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm"><?= $error ?></div>
 <?php endif; ?>
 
-<div class="bg-white rounded-2xl shadow overflow-hidden">
-  <table class="w-full text-sm">
+<div class="bg-white rounded-2xl shadow overflow-x-auto">
+  <table class="w-full min-w-max text-sm">
     <thead class="bg-gray-50 text-gray-400 text-left">
       <tr>
         <th class="px-5 py-3">Username</th>

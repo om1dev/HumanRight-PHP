@@ -27,7 +27,7 @@ include __DIR__ . '/../partials/header.php';
   </form>
 </div>
 
-<div class="bg-white rounded-2xl shadow overflow-hidden">
+<div class="bg-white rounded-2xl shadow overflow-x-auto">
   <div class="divide-y">
     <?php foreach ($logs as $log): ?>
     <div class="flex items-start gap-4 px-6 py-4 hover:bg-gray-50">

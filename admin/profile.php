@@ -100,7 +100,7 @@ include __DIR__ . '/partials/header.php';
       <input type="hidden" name="action" value="profile">
 
       <!-- Photo -->
-      <div class="flex items-center gap-6">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
         <div>
           <?php if (!empty($admin['photo'])): ?>
             <img id="photoPreview" src="<?= sanitize($admin['photo']) ?>"
@@ -120,7 +120,7 @@ include __DIR__ . '/partials/header.php';
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label class="text-sm font-medium text-gray-700">Username <span class="text-red-500">*</span></label>
           <input type="text" name="username" value="<?= sanitize($admin['username']) ?>" required
@@ -144,7 +144,7 @@ include __DIR__ . '/partials/header.php';
           class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm resize-none"><?= sanitize($admin['bio'] ?? '') ?></textarea>
       </div>
 
-      <button class="bg-blue-700 text-white px-8 py-2.5 rounded-lg hover:bg-blue-600 font-semibold text-sm">
+      <button class="w-full sm:w-auto bg-blue-700 text-white px-8 py-2.5 rounded-lg hover:bg-blue-600 font-semibold text-sm">
         <i class="fa-solid fa-floppy-disk mr-1"></i> Save Profile
       </button>
     </form>
@@ -172,7 +172,7 @@ include __DIR__ . '/partials/header.php';
         <input type="password" name="confirm_password" required
           class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
       </div>
-      <button class="bg-blue-700 text-white px-6 py-2.5 rounded-lg hover:bg-blue-600 font-semibold text-sm">
+      <button class="w-full sm:w-auto bg-blue-700 text-white px-6 py-2.5 rounded-lg hover:bg-blue-600 font-semibold text-sm">
         Update Password
       </button>
     </form>

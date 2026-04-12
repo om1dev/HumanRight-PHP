@@ -1,4 +1,11 @@
 Options -Indexes
+
+# Block direct access to sensitive files
+<FilesMatch "^\.(env|gitignore)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
 RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} -f

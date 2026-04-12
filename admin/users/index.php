@@ -24,7 +24,7 @@ include __DIR__ . '/../partials/header.php';
 <?php endif; ?>
 
 <div class="bg-white rounded-2xl shadow overflow-x-auto">
-  <table class="w-full text-sm">
+  <table class="w-full min-w-max text-sm">
     <thead class="bg-gray-50 text-gray-400 text-left">
       <tr>
         <th class="px-5 py-3">User</th>

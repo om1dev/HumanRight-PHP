@@ -32,7 +32,7 @@ include __DIR__ . '/../includes/header.php';
     <div class="bg-red-100 text-red-700 px-4 py-3 rounded-xl mb-6 text-sm"><?= $error ?></div>
   <?php endif; ?>
 
-  <div class="grid md:grid-cols-3 gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     <!-- Left: Avatar + Info -->
     <div class="md:col-span-1">
       <div class="bg-white rounded-2xl shadow p-6 text-center">
@@ -52,7 +52,7 @@ include __DIR__ . '/../includes/header.php';
           <p class="text-gray-600 text-sm mt-3 leading-relaxed"><?= sanitize($user['bio']) ?></p>
         <?php endif; ?>
 
-        <div class="mt-3 space-y-1 text-xs text-gray-400">
+        <div class="mt-3 space-y-1 text-xs text-gray-400 break-words">
           <?php if (!empty($user['phone'])): ?>
             <p><i class="fa-solid fa-phone mr-1"></i><?= sanitize($user['phone']) ?></p>
           <?php endif; ?>
@@ -64,14 +64,14 @@ include __DIR__ . '/../includes/header.php';
           <?php endif; ?>
           <?php if (!empty($user['website'])): ?>
             <p><i class="fa-solid fa-link mr-1"></i>
-              <a href="<?= sanitize($user['website']) ?>" target="_blank" class="text-blue-500 hover:underline"><?= sanitize($user['website']) ?></a>
+              <a href="<?= sanitize($user['website']) ?>" target="_blank" class="text-blue-500 hover:underline break-all"><?= sanitize($user['website']) ?></a>
             </p>
           <?php endif; ?>
         </div>
 
         <!-- Social Links -->
         <?php if (!empty($user['facebook']) || !empty($user['twitter']) || !empty($user['instagram'])): ?>
-        <div class="flex justify-center gap-3 mt-4">
+        <div class="flex flex-wrap justify-center gap-3 mt-4">
           <?php if (!empty($user['facebook'])): ?>
             <a href="<?= sanitize($user['facebook']) ?>" target="_blank" class="text-blue-600 hover:text-blue-800 text-lg"><i class="fa-brands fa-facebook"></i></a>
           <?php endif; ?>
@@ -94,7 +94,7 @@ include __DIR__ . '/../includes/header.php';
 
     <!-- Right: Stats + Comments -->
     <div class="md:col-span-2 space-y-6">
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="bg-white rounded-2xl shadow p-5 text-center">
           <p class="text-3xl font-bold text-blue-700"><?= $db->comments->countDocuments(['user_id' => $userId]) ?></p>
           <p class="text-gray-500 text-sm mt-1">Total Comments</p>

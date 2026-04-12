@@ -64,7 +64,7 @@ include __DIR__ . '/../partials/header.php';
       <input type="text" name="title" value="<?= sanitize($_POST['title'] ?? $blog['title']) ?>" required
         class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
     </div>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
         <label class="text-sm font-medium text-gray-700">Category</label>
         <input type="text" name="category" value="<?= sanitize($_POST['category'] ?? $blog['category'] ?? '') ?>"

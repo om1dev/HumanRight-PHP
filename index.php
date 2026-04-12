@@ -188,7 +188,7 @@ include __DIR__ . '/includes/header.php';
 ══════════════════════════════════════════ -->
 <section class="py-24 px-5 sm:px-8 bg-mist">
   <div class="max-w-7xl mx-auto">
-    <div class="text-center max-w-3xl mx-auto mb-12 sr">
+    <div class="text-center max-w-3xl mx-auto mb-10 sr">
       <span class="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
         <i class="fa-solid fa-circle-dot text-[8px]"></i> What We Do
       </span>
@@ -196,41 +196,27 @@ include __DIR__ . '/includes/header.php';
       <p class="text-gray-500 text-sm sm:text-base mt-4">We use evidence, advocacy, and community partnership to protect rights and drive systemic change.</p>
     </div>
 
-    <div class="bg-white border border-gray-100 rounded-3xl p-5 sm:p-7 lg:p-8 shadow-[0_20px_60px_rgba(13,27,42,.08)] sr">
-      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5">
-        <?php foreach ([
-          ['01','fa-venus',        '#2D3A8C','bg-primary/10', 'Gender Justice',              'Ending gender-based violence and advancing women\'s leadership.', SITE_URL.'/blog?search=gender'],
-          ['02','fa-landmark',     '#C0392B','bg-accent/10',  'Governance & Accountability', 'Strengthening democratic institutions and transparent governance.', SITE_URL.'/blog?search=governance'],
-          ['03','fa-coins',        '#2D3A8C','bg-primary/10', 'Economic Justice',            'Advocating for fair wages, land rights, and resource equity.', SITE_URL.'/blog?search=economic%20justice'],
-          ['04','fa-globe-africa', '#C0392B','bg-accent/10',  'Decolonial Development',      'Centering Global South leadership in development priorities.', SITE_URL.'/blog?search=decolonial'],
-        ] as $i=>[$num,$icon,$color,$bg,$title,$desc,$url]): ?>
-        <article class="group rounded-2xl border border-gray-100 bg-mist/55 p-5 hover:bg-white hover:shadow-lg transition-all">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-[11px] font-semibold tracking-[0.14em] text-gray-400"><?= $num ?></span>
-            <div class="w-10 h-10 rounded-xl <?= $bg ?> flex items-center justify-center group-hover:scale-105 transition-transform">
-              <i class="fa-solid <?= $icon ?> text-sm" style="color:<?= $color ?>"></i>
-            </div>
-          </div>
-          <h3 class="font-serif text-[1.35rem] text-ink leading-snug mb-2"><?= $title ?></h3>
-          <p class="text-gray-500 text-sm leading-relaxed mb-4"><?= $desc ?></p>
-          <a href="<?= $url ?>" class="inline-flex items-center gap-1.5 text-xs font-semibold" style="color:<?= $color ?>">
-            Explore work <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
-          </a>
-        </article>
-        <?php endforeach; ?>
-      </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 sr">
+      <?php foreach ([
+        ['Gender Justice', 'Ending gender-based violence and advancing women\'s leadership.', SITE_URL.'/blog?search=gender'],
+        ['Governance & Accountability', 'Strengthening democratic institutions and transparent governance.', SITE_URL.'/blog?search=governance'],
+        ['Economic Justice', 'Advocating for fair wages, land rights, and resource equity.', SITE_URL.'/blog?search=economic%20justice'],
+        ['Decolonial Development', 'Centering Global South leadership in development priorities.', SITE_URL.'/blog?search=decolonial'],
+      ] as [$title,$desc,$url]): ?>
+      <article class="bg-white border border-gray-100 rounded-2xl p-6">
+        <h3 class="font-serif text-2xl text-ink mb-2\"><?= $title ?></h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4\"><?= $desc ?></p>
+        <a href="<?= $url ?>" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+          Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </a>
+      </article>
+      <?php endforeach; ?>
+    </div>
 
-      <div class="mt-6 sm:mt-8 pt-5 border-t border-gray-100 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-        <p class="text-gray-500 text-sm">Want the full methodology behind these pillars?</p>
-        <div class="flex flex-col sm:flex-row gap-3">
-          <a href="<?= SITE_URL ?>/about" class="inline-flex items-center justify-center gap-2 bg-ink text-white font-semibold px-6 py-3 rounded-full hover:bg-primary transition-colors text-sm">
-            Our Approach <i class="fa-solid fa-arrow-right text-xs"></i>
-          </a>
-          <a href="<?= SITE_URL ?>/blog" class="inline-flex items-center justify-center gap-2 bg-white border border-gray-200 text-ink font-semibold px-6 py-3 rounded-full hover:border-ink transition-colors text-sm">
-            Read Insights
-          </a>
-        </div>
-      </div>
+    <div class="mt-8 text-center sr">
+      <a href="<?= SITE_URL ?>/about" class="inline-flex items-center gap-2 bg-ink text-white font-semibold px-6 py-3 rounded-full hover:bg-primary transition-colors text-sm">
+        Our Approach <i class="fa-solid fa-arrow-right text-xs"></i>
+      </a>
     </div>
   </div>
 </section>

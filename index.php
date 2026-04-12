@@ -9,118 +9,85 @@ include __DIR__ . '/includes/header.php';
      HERO
 ══════════════════════════════════════════ -->
 <section class="relative min-h-[82vh] flex items-center overflow-hidden bg-[#EEEEF8]">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(48,68,200,.14),transparent_28%),radial-gradient(circle_at_80%_18%,rgba(209,73,91,.11),transparent_22%),radial-gradient(circle_at_65%_75%,rgba(48,68,200,.08),transparent_24%)]"></div>
+  <div class="absolute inset-0 pointer-events-none opacity-[0.32]" style="background-image:radial-gradient(rgba(48,68,200,.12) 1px, transparent 1px);background-size:26px 26px;"></div>
+  <div class="absolute top-0 right-0 w-[520px] h-[520px] bg-primary/12 rounded-full blur-[130px] pointer-events-none"></div>
+  <div class="absolute -bottom-20 left-[10%] w-[320px] h-[320px] bg-accent/12 rounded-full blur-[110px] pointer-events-none"></div>
 
-  <!-- Light background image, very subtle -->
-  <div class="absolute inset-0">
-    <img
-      src="https://images.unsplash.com/photo-1591189863430-ab87e120f312?w=1800&q=80&auto=format&fit=crop"
-      alt="Human rights advocates marching together"
-      class="w-full h-full object-cover object-center opacity-[0.08]"
-      loading="eager">
-    <!-- Light gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-r from-[#EEEEF8]/95 via-[#EEEEF8]/80 to-[#EEEEF8]/50"></div>
-  </div>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 pt-6 pb-12 sm:py-16 w-full">
+    <div class="grid xl:grid-cols-12 gap-8 xl:gap-10 items-center">
 
-  <!-- Decorative primary line -->
-  <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-primary to-transparent opacity-40"></div>
-  <!-- Soft primary blob top-right -->
-  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
-  <div class="absolute bottom-0 left-1/3 w-[300px] h-[300px] bg-accent/8 rounded-full blur-[100px] pointer-events-none"></div>
-
-  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 py-14 w-full">
-    <div class="grid lg:grid-cols-12 gap-8 items-center">
-
-      <!-- Left content -->
-      <div class="lg:col-span-7 space-y-8">
-
-        <!-- Eyebrow -->
-        <div class="inline-flex items-center gap-2 bg-white border border-primary/20 text-primary text-[11px] font-semibold px-3.5 py-1.5 rounded-full shadow-sm">
+      <div class="xl:col-span-7 space-y-7 sm:space-y-8">
+        <div class="inline-flex items-center gap-2 bg-white/95 border border-primary/20 text-primary text-[11px] font-semibold px-3.5 py-1.5 rounded-full shadow-sm">
           <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-          Global Human Rights Platform
+          Human Rights. Human Dignity. Shared Future.
         </div>
 
-        <!-- Headline -->
-        <h1 class="font-serif text-ink leading-[1.1] text-[2.4rem] sm:text-[3rem] lg:text-[3.6rem] xl:text-[4rem]">
-          Shifting Power,<br>
-          <span class="text-primary italic">Advancing Justice</span> &amp;<br>
-          Building Equitable Futures.
+        <h1 class="font-serif text-ink leading-[1.04] text-[2.2rem] sm:text-[2.9rem] lg:text-[3.5rem] xl:text-[4rem]">
+          Turning Rights Into<br>
+          <span class="text-primary italic">Real-World Protection</span><br>
+          for Every Community.
         </h1>
 
-        <!-- Sub -->
-        <p class="text-gray-500 text-base leading-relaxed max-w-md">
-          Centering the voices of those most impacted by injustice — through research, advocacy, and community-led action.
+        <p class="text-gray-600 text-base sm:text-[1.04rem] leading-relaxed max-w-xl">
+          We collaborate with communities, researchers, and institutions to confront inequality, defend freedoms, and build systems where justice is accessible to all.
         </p>
 
-        <!-- CTAs -->
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
           <a href="<?= SITE_URL ?>/blog"
-            class="group inline-flex items-center gap-2 bg-primary text-white font-semibold px-7 py-3.5 rounded-full hover:bg-primary/85 transition-all text-sm shadow-lg shadow-primary/25">
-            Explore Research
+            class="group inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold px-7 py-3.5 rounded-full hover:bg-primary/85 transition-all text-sm shadow-lg shadow-primary/25">
+            Explore Research & Insights
             <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
           </a>
           <a href="<?= SITE_URL ?>/contact"
-            class="inline-flex items-center gap-2 bg-white border border-gray-200 text-ink font-semibold px-7 py-3.5 rounded-full hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
+            class="inline-flex items-center justify-center gap-2 bg-white border border-gray-200 text-ink font-semibold px-7 py-3.5 rounded-full hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
             <i class="fa-solid fa-handshake text-xs"></i>
-            Join the Movement
+            Partner With Us
           </a>
         </div>
 
-        <!-- Stats -->
-        <div class="flex flex-wrap gap-8 pt-6 border-t border-gray-200">
-          <?php foreach ([['15+','Years of Advocacy'],['40+','Countries Impacted'],['200+','Programs Led'],['50K+','Lives Reached']] as $i=>[$n,$l]): ?>
-          <div class="stat-num" style="animation-delay:<?= $i*.12 ?>s">
-            <p class="font-serif text-3xl font-semibold text-ink"><?= $n ?></p>
-            <p class="text-gray-400 text-xs mt-0.5 tracking-wide"><?= $l ?></p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-3">
+          <?php foreach ([['15+','Years'],['40+','Countries'],['200+','Programs'],['50K+','Lives']] as $i=>[$n,$l]): ?>
+          <div class="stat-num bg-white/90 border border-gray-100 rounded-2xl px-4 py-3 shadow-sm" style="animation-delay:<?= $i*.12 ?>s">
+            <p class="font-serif text-2xl sm:text-[1.75rem] font-semibold text-ink leading-none"><?= $n ?></p>
+            <p class="text-gray-500 text-[11px] uppercase tracking-[0.14em] mt-1"><?= $l ?></p>
           </div>
           <?php endforeach; ?>
         </div>
       </div>
 
-      <!-- Right: floating cards -->
-      <div class="lg:col-span-5 hidden lg:flex flex-col gap-4 items-end">
-
-        <!-- Quote card -->
-        <div class="float bg-white rounded-2xl shadow-2xl p-6 max-w-[320px] w-full">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-              <i class="fa-solid fa-quote-left text-primary text-sm"></i>
+      <div class="xl:col-span-5">
+        <div class="relative">
+          <div class="bg-white/92 border border-white/70 rounded-[1.8rem] shadow-[0_30px_70px_rgba(15,23,42,.12)] p-4 sm:p-5">
+            <div class="rounded-[1.35rem] overflow-hidden aspect-[4/3] mb-4 border border-gray-100">
+              <img
+                src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1300&q=80&auto=format&fit=crop"
+                alt="Human rights advocates marching together"
+                class="w-full h-full object-cover object-center"
+                loading="eager">
             </div>
-            <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Featured Quote</p>
-          </div>
-          <p class="font-serif text-ink text-[1.05rem] leading-snug italic">
-            "Human rights are not a privilege conferred by government. They are every human being's entitlement."
-          </p>
-          <div class="flex items-center gap-2 mt-4 pt-4 border-t border-gray-100">
-            <div class="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center">
-              <i class="fa-solid fa-user text-accent text-[9px]"></i>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div class="rounded-xl border border-gray-100 bg-mist px-3.5 py-3">
+                <p class="text-[10px] uppercase tracking-[0.16em] text-gray-400 mb-1">Current Priority</p>
+                <p class="text-sm font-semibold text-ink">Civic Freedoms & Safety</p>
+              </div>
+              <div class="rounded-xl border border-gray-100 bg-white px-3.5 py-3">
+                <p class="text-[10px] uppercase tracking-[0.16em] text-gray-400 mb-1">Active Region</p>
+                <p class="text-sm font-semibold text-ink">Global South Networks</p>
+              </div>
             </div>
-            <p class="text-accent text-xs font-semibold">Mother Teresa</p>
           </div>
-        </div>
 
-        <!-- Active campaigns badge -->
-        <div class="float-d bg-primary text-white rounded-2xl shadow-xl px-5 py-4 flex items-center gap-3 self-start">
-          <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-            <i class="fa-solid fa-bullhorn text-sm"></i>
+          <div class="hidden sm:flex absolute -left-10 top-8 bg-white border border-gray-100 rounded-2xl shadow-xl px-4 py-3 items-center gap-2.5">
+            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+            <p class="text-xs font-semibold text-gray-600 uppercase tracking-[0.14em]">Community-Led Action</p>
           </div>
-          <div>
-            <p class="font-semibold text-sm leading-none">Active Campaigns</p>
-            <p class="text-white/70 text-xs mt-0.5">Ongoing globally</p>
-          </div>
-          <span class="ml-2 w-2 h-2 rounded-full bg-white animate-pulse"></span>
-        </div>
-
-        <!-- Focus tags -->
-        <div class="flex flex-wrap gap-2 justify-end max-w-[320px]">
-          <?php foreach (['Gender Justice','Governance','Economic Rights','Global South','Decolonial Dev'] as $tag): ?>
-          <span class="bg-white border border-gray-200 text-gray-600 text-xs px-3 py-1.5 rounded-full shadow-sm"><?= $tag ?></span>
-          <?php endforeach; ?>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Bottom fade -->
   <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent"></div>
 </section>
 

@@ -175,6 +175,30 @@
 <!-- ══════════════════════════════════════════
      NAVBAR
 ══════════════════════════════════════════ -->
+<?php
+$currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
+$currentPath = rtrim($currentPath, '/');
+$currentPath = $currentPath === '' ? '/' : $currentPath;
+
+$navIsActive = function (array $patterns) use ($currentPath): bool {
+  foreach ($patterns as $pattern) {
+    if ($pattern === '/' && $currentPath === '/') {
+      return true;
+    }
+    if ($pattern !== '/' && ($currentPath === $pattern || strpos($currentPath, $pattern . '/') === 0)) {
+      return true;
+    }
+  }
+  return false;
+};
+
+$navItems = [
+  ['label' => 'Home', 'url' => SITE_URL . '/',        'patterns' => ['/', '/index.php']],
+  ['label' => 'About', 'url' => SITE_URL . '/about',   'patterns' => ['/about', '/about.php']],
+  ['label' => 'Insights', 'url' => SITE_URL . '/blog', 'patterns' => ['/blog', '/blog.php', '/single-blog', '/single-blog.php']],
+  ['label' => 'Contact', 'url' => SITE_URL . '/contact', 'patterns' => ['/contact', '/contact.php']],
+];
+?>
 <nav id="nav" class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/60 shadow-[0_8px_32px_rgba(15,23,42,.06)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-8 h-[78px] sm:h-[72px] flex items-center justify-between gap-3">
 
@@ -198,10 +222,14 @@
 
     <!-- Desktop nav -->
     <ul class="hidden md:flex items-center gap-2 text-[0.875rem] font-medium text-gray-500 bg-white/75 border border-gray-100 rounded-full px-2 py-2 shadow-sm">
-      <li><a href="<?= SITE_URL ?>/"        class="nl px-4 py-2 rounded-full hover:text-ink transition-colors">Home</a></li>
-      <li><a href="<?= SITE_URL ?>/about"   class="nl px-4 py-2 rounded-full hover:text-ink transition-colors">About</a></li>
-      <li><a href="<?= SITE_URL ?>/blog"    class="nl px-4 py-2 rounded-full hover:text-ink transition-colors">Insights</a></li>
-      <li><a href="<?= SITE_URL ?>/contact" class="nl px-4 py-2 rounded-full hover:text-ink transition-colors">Contact</a></li>
+      <?php foreach ($navItems as $item): ?>
+        <?php $isActive = $navIsActive($item['patterns']); ?>
+        <li>
+          <a href="<?= $item['url'] ?>"
+             class="nl px-4 py-2 rounded-full transition-colors <?= $isActive ? 'bg-ink text-white shadow-sm hover:text-white' : 'hover:text-ink' ?>"
+             <?= $isActive ? 'aria-current="page"' : '' ?>><?= $item['label'] ?></a>
+        </li>
+      <?php endforeach; ?>
     </ul>
 
     <!-- Auth -->
@@ -249,11 +277,15 @@
       <?php endif; ?>
     </div>
     <div class="space-y-1">
-      <?php foreach ([['Home',SITE_URL.'/'],['About',SITE_URL.'/about'],['Insights',SITE_URL.'/blog'],['Contact',SITE_URL.'/contact']] as [$l,$u]): ?>
-    <a href="<?= $u ?>" class="flex items-center justify-between py-3.5 px-3 text-sm font-medium text-gray-700 hover:text-ink rounded-2xl hover:bg-gray-50 transition-colors">
-      <span><?= $l ?></span> <i class="fa-solid fa-chevron-right text-xs text-gray-300"></i>
-    </a>
-    <?php endforeach; ?>
+      <?php foreach ($navItems as $item): ?>
+        <?php $isActive = $navIsActive($item['patterns']); ?>
+        <a href="<?= $item['url'] ?>"
+           class="flex items-center justify-between py-3.5 px-3 text-sm font-medium rounded-2xl transition-colors <?= $isActive ? 'bg-primary/10 text-primary border border-primary/20' : 'text-gray-700 hover:text-ink hover:bg-gray-50' ?>"
+           <?= $isActive ? 'aria-current="page"' : '' ?>>
+          <span><?= $item['label'] ?></span>
+          <i class="fa-solid fa-chevron-right text-xs <?= $isActive ? 'text-primary/70' : 'text-gray-300' ?>"></i>
+        </a>
+      <?php endforeach; ?>
     </div>
   </div>
 </nav>

@@ -343,7 +343,7 @@ include __DIR__ . '/includes/header.php';
 <section class="relative py-28 px-5 sm:px-8 overflow-hidden">
   <!-- Background image -->
   <div class="absolute inset-0">
-    <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=1800&q=80&auto=format&fit=crop"
+    <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=1800&q=80&auto=format&fit=crop"
       alt="Human rights demonstration background" class="w-full h-full object-cover object-center">
     <!-- Dark overlay so text is readable -->
     <div class="absolute inset-0 bg-ink/75"></div>

@@ -41,7 +41,7 @@ include __DIR__ . '/partials/header.php';
 ?>
 
 <!-- Stat Cards -->
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
   <?php foreach ([
     ['fa-users',     'Total Users',    $totalUsers,     'bg-blue-500',   SITE_URL.'/admin/users/'],
     ['fa-newspaper', 'Total Blogs',    $totalBlogs,     'bg-green-500',  SITE_URL.'/admin/blogs/'],
@@ -61,7 +61,7 @@ include __DIR__ . '/partials/header.php';
 </div>
 
 <!-- Secondary Stats -->
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
   <?php foreach ([
     ['Published Blogs',   $publishedBlogs,  'text-green-600',  'bg-green-50'],
     ['Draft Blogs',       $draftBlogs,      'text-gray-500',   'bg-gray-50'],
@@ -77,13 +77,13 @@ include __DIR__ . '/partials/header.php';
 
 <!-- Alerts -->
 <?php if ($unreadMessages > 0): ?>
-<div class="bg-yellow-50 border border-yellow-300 text-yellow-800 px-5 py-3 rounded-xl mb-6 text-sm flex items-center justify-between">
+<div class="bg-yellow-50 border border-yellow-300 text-yellow-800 px-5 py-3 rounded-xl mb-6 text-sm flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
   <span><i class="fa-solid fa-bell mr-2"></i>You have <strong><?= $unreadMessages ?></strong> unread message(s).</span>
   <a href="<?= SITE_URL ?>/admin/messages/" class="underline font-semibold">View</a>
 </div>
 <?php endif; ?>
 <?php if ($pendingComments > 0): ?>
-<div class="bg-blue-50 border border-blue-300 text-blue-800 px-5 py-3 rounded-xl mb-6 text-sm flex items-center justify-between">
+<div class="bg-blue-50 border border-blue-300 text-blue-800 px-5 py-3 rounded-xl mb-6 text-sm flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
   <span><i class="fa-solid fa-comment-dots mr-2"></i><strong><?= $pendingComments ?></strong> comment(s) awaiting approval.</span>
   <a href="<?= SITE_URL ?>/admin/comments/" class="underline font-semibold">Review</a>
 </div>

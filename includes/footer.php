@@ -1,8 +1,10 @@
 </main>
 <?php include __DIR__ . '/event-popup.php'; ?>
 
-<footer class="bg-ink text-white">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-16 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+<footer class="relative overflow-hidden bg-ink text-white">
+  <div class="absolute inset-0 opacity-25 pointer-events-none" style="background:radial-gradient(circle at top right, rgba(48,68,200,.22), transparent 32%), radial-gradient(circle at left bottom, rgba(209,73,91,.18), transparent 28%);"></div>
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 pt-16 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
     <!-- Brand -->
     <div class="sm:col-span-2 lg:col-span-2">
@@ -55,7 +57,7 @@
     </div>
   </div>
 
-  <div class="border-t border-white/8 max-w-7xl mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/25">
+  <div class="relative border-t border-white/8 max-w-7xl mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/25">
     <p>&copy; <?= date('Y') ?> <?= SITE_NAME ?>. All rights reserved.</p>
     <p>Advocating for justice, equality &amp; human dignity worldwide.</p>
   </div>

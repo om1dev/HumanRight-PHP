@@ -18,11 +18,11 @@
     theme: {
       extend: {
         colors: {
-          ink:     '#0D1B2A',
-          primary: '#2D3A8C',
-          accent:  '#C0392B',
-          mist:    '#F4F5FB',
-          blush:   '#FDF6F6',
+          ink:     '#0C1724',
+          primary: '#3044C8',
+          accent:  '#D1495B',
+          mist:    '#F4F7FD',
+          blush:   '#FFF4F5',
         },
         fontFamily: {
           serif: ['Fraunces', 'Georgia', 'serif'],
@@ -34,7 +34,60 @@
 </script>
 <style>
   *, body { font-family: 'Inter', system-ui, sans-serif; }
+  html { scroll-behavior: smooth; }
+  body {
+    color: #243041;
+    background:
+      radial-gradient(circle at top left, rgba(48, 68, 200, .08), transparent 30%),
+      radial-gradient(circle at top right, rgba(209, 73, 91, .07), transparent 24%),
+      linear-gradient(180deg, #f8fbff 0%, #ffffff 34%, #f7f9fe 100%);
+  }
+  ::selection { background: rgba(48, 68, 200, .18); color: #0c1724; }
   h1,h2,h3,h4,.font-serif { font-family: 'Fraunces', Georgia, serif; }
+  .site-shell { position: relative; isolation: isolate; }
+  .site-shell::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .45;
+    z-index: -1;
+    background-image: radial-gradient(rgba(48, 68, 200, .08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: linear-gradient(180deg, rgba(0,0,0,.28), transparent 40%);
+  }
+  .glass-panel {
+    background: rgba(255, 255, 255, .78);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(148, 163, 184, .18);
+    box-shadow: 0 18px 50px rgba(13, 27, 42, .08);
+  }
+  .section-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .45rem .8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(48, 68, 200, .12);
+    background: rgba(48, 68, 200, .08);
+    color: #3044c8;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .surface-card {
+    background: rgba(255,255,255,.9);
+    border: 1px solid rgba(148, 163, 184, .14);
+    border-radius: 1.5rem;
+    box-shadow: 0 18px 50px rgba(13, 27, 42, .08);
+  }
+  .surface-card-soft {
+    background: rgba(244, 247, 253, .9);
+    border: 1px solid rgba(148, 163, 184, .12);
+    border-radius: 1.5rem;
+  }
+  .text-balance { text-wrap: balance; }
 
   /* ── Scroll reveal ── */
   .sr { opacity:0; transform:translateY(36px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
@@ -84,17 +137,46 @@
   /* ── Tag pill hover ── */
   .tag-pill { transition: background .2s, color .2s, border-color .2s; }
   .tag-pill:hover { background:#2D3A8C; color:#fff; border-color:#2D3A8C; }
+  .ui-input, .ui-textarea, .ui-select {
+    background: rgba(255,255,255,.94);
+    border: 1px solid rgba(148, 163, 184, .22);
+    border-radius: 1rem;
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  }
+  .ui-input:focus, .ui-textarea:focus, .ui-select:focus {
+    outline: none;
+    border-color: rgba(48, 68, 200, .35);
+    box-shadow: 0 0 0 4px rgba(48, 68, 200, .12);
+  }
+  .ui-button-primary {
+    background: linear-gradient(135deg, #3044c8 0%, #2335a1 100%);
+    box-shadow: 0 16px 30px rgba(48, 68, 200, .22);
+  }
+  .ui-button-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 20px 38px rgba(48, 68, 200, .26);
+  }
+  .ui-button-soft {
+    background: rgba(255,255,255,.9);
+    border: 1px solid rgba(148, 163, 184, .2);
+    box-shadow: 0 10px 28px rgba(13, 27, 42, .05);
+  }
+  .ui-button-soft:hover {
+    border-color: rgba(48, 68, 200, .22);
+    color: #3044c8;
+    transform: translateY(-1px);
+  }
 </style>
 </head>
-<body class="bg-white text-gray-800 flex flex-col min-h-screen antialiased">
+<body class="site-shell bg-white text-gray-800 flex flex-col min-h-screen antialiased">
 
 <div id="rbar"></div>
 
 <!-- ══════════════════════════════════════════
      NAVBAR
 ══════════════════════════════════════════ -->
-<nav id="nav" class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100/80">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-[68px] flex items-center justify-between gap-4">
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/60 shadow-[0_8px_32px_rgba(15,23,42,.06)]">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-[72px] flex items-center justify-between gap-4">
 
     <!-- Logo -->
     <a href="<?= SITE_URL ?>/" class="flex items-center gap-3 flex-shrink-0 group">
@@ -115,40 +197,40 @@
     </a>
 
     <!-- Desktop nav -->
-    <ul class="hidden md:flex items-center gap-8 text-[0.875rem] font-medium text-gray-500">
-      <li><a href="<?= SITE_URL ?>/"        class="nl hover:text-ink transition-colors">Home</a></li>
-      <li><a href="<?= SITE_URL ?>/about"   class="nl hover:text-ink transition-colors">About</a></li>
-      <li><a href="<?= SITE_URL ?>/blog"    class="nl hover:text-ink transition-colors">Insights</a></li>
-      <li><a href="<?= SITE_URL ?>/contact" class="nl hover:text-ink transition-colors">Contact</a></li>
+    <ul class="hidden md:flex items-center gap-2 text-[0.875rem] font-medium text-gray-500 bg-white/75 border border-gray-100 rounded-full px-2 py-2 shadow-sm">
+      <li><a href="<?= SITE_URL ?>/"        class="nl px-4 py-2 rounded-full hover:text-ink transition-colors">Home</a></li>
+      <li><a href="<?= SITE_URL ?>/about"   class="nl px-4 py-2 rounded-full hover:text-ink transition-colors">About</a></li>
+      <li><a href="<?= SITE_URL ?>/blog"    class="nl px-4 py-2 rounded-full hover:text-ink transition-colors">Insights</a></li>
+      <li><a href="<?= SITE_URL ?>/contact" class="nl px-4 py-2 rounded-full hover:text-ink transition-colors">Contact</a></li>
     </ul>
 
     <!-- Auth -->
     <div class="hidden md:flex items-center gap-3">
       <?php if (isLoggedIn()): ?>
         <?php $navUser = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($_SESSION['user_id'])]); ?>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 bg-white/80 border border-gray-100 rounded-full px-2 py-1 shadow-sm">
           <?php if (!empty($navUser['photo'])): ?>
             <img src="<?= sanitize($navUser['photo']) ?>" class="w-7 h-7 rounded-full object-cover ring-2 ring-primary/30">
           <?php else: ?>
             <div class="w-7 h-7 rounded-full bg-ink text-white flex items-center justify-center text-xs font-semibold"><?= strtoupper(substr($_SESSION['username'],0,1)) ?></div>
           <?php endif; ?>
-          <a href="<?= SITE_URL ?>/user/profile" class="text-sm text-gray-700 hover:text-ink font-medium transition-colors"><?= sanitize($_SESSION['username']) ?></a>
+          <a href="<?= SITE_URL ?>/user/profile" class="text-sm text-gray-700 hover:text-ink font-medium transition-colors pr-2"><?= sanitize($_SESSION['username']) ?></a>
         </div>
-        <a href="<?= SITE_URL ?>/auth/logout" class="text-sm text-gray-400 hover:text-red-500 transition-colors">Logout</a>
+        <a href="<?= SITE_URL ?>/auth/logout" class="text-sm text-gray-500 hover:text-red-500 transition-colors font-medium">Logout</a>
       <?php else: ?>
-        <a href="<?= SITE_URL ?>/auth/login" class="text-sm text-gray-500 hover:text-ink transition-colors font-medium">Login</a>
-        <a href="<?= SITE_URL ?>/auth/signup" class="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-primary/85 transition-colors shadow-sm">Join Us</a>
+        <a href="<?= SITE_URL ?>/auth/login" class="text-sm text-gray-600 hover:text-ink transition-colors font-medium">Login</a>
+        <a href="<?= SITE_URL ?>/auth/signup" class="ui-button-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all">Join Us</a>
       <?php endif; ?>
     </div>
 
     <!-- Hamburger -->
-    <button id="menuBtn" class="md:hidden p-2 text-gray-500 hover:text-ink transition-colors" aria-label="Menu">
+    <button id="menuBtn" class="md:hidden p-2.5 text-gray-500 hover:text-ink transition-colors rounded-full bg-white/70 border border-gray-100 shadow-sm" aria-label="Menu">
       <i class="fa-solid fa-bars text-lg"></i>
     </button>
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white px-5 py-5 space-y-1">
+  <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/96 backdrop-blur-xl px-5 py-5 space-y-1 shadow-lg">
     <?php foreach ([['Home',SITE_URL.'/'],['About',SITE_URL.'/about'],['Insights',SITE_URL.'/blog'],['Contact',SITE_URL.'/contact']] as [$l,$u]): ?>
     <a href="<?= $u ?>" class="flex items-center justify-between py-3 text-sm font-medium text-gray-700 hover:text-ink border-b border-gray-50 transition-colors">
       <?= $l ?> <i class="fa-solid fa-chevron-right text-xs text-gray-300"></i>
@@ -157,16 +239,16 @@
     <div class="pt-4 flex gap-3">
       <?php if (isLoggedIn()): ?>
         <a href="<?= SITE_URL ?>/user/profile" class="text-sm text-ink font-semibold"><?= sanitize($_SESSION['username']) ?></a>
-        <a href="<?= SITE_URL ?>/auth/logout" class="text-sm text-red-500">Logout</a>
+        <a href="<?= SITE_URL ?>/auth/logout" class="text-sm text-red-500 font-medium">Logout</a>
       <?php else: ?>
         <a href="<?= SITE_URL ?>/auth/login" class="text-sm text-gray-600 font-medium">Login</a>
-        <a href="<?= SITE_URL ?>/auth/signup" class="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full">Join Us</a>
+        <a href="<?= SITE_URL ?>/auth/signup" class="ui-button-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full">Join Us</a>
       <?php endif; ?>
     </div>
   </div>
 </nav>
 
-<div class="h-[68px]"></div>
+<div class="h-[72px]"></div>
 <main class="flex-1">
 
 <script>

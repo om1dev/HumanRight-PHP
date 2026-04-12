@@ -97,7 +97,7 @@ include __DIR__ . '/../partials/header.php';
         </div>
         <?php endforeach; ?>
       </div>
-      <button class="bg-blue-700 text-white px-6 py-2 rounded-lg hover:bg-blue-600 font-semibold text-sm">Save Settings</button>
+      <button class="w-full sm:w-auto bg-blue-700 text-white px-6 py-2 rounded-lg hover:bg-blue-600 font-semibold text-sm">Save Settings</button>
     </form>
   </div>
 
@@ -123,7 +123,7 @@ include __DIR__ . '/../partials/header.php';
         <input type="password" name="confirm_password" required
           class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
       </div>
-      <button class="bg-blue-700 text-white px-6 py-2 rounded-lg hover:bg-blue-600 font-semibold text-sm">Update Password</button>
+      <button class="w-full sm:w-auto bg-blue-700 text-white px-6 py-2 rounded-lg hover:bg-blue-600 font-semibold text-sm">Update Password</button>
     </form>
   </div>
 
@@ -132,17 +132,17 @@ include __DIR__ . '/../partials/header.php';
     <h2 class="font-bold text-gray-700 mb-5 flex items-center gap-2">
       <i class="fa-solid fa-download text-blue-600"></i> Export Data
     </h2>
-    <div class="flex flex-wrap gap-3">
+    <div class="flex flex-col sm:flex-row gap-3">
       <a href="<?= SITE_URL ?>/admin/settings/export?type=users"
-        class="bg-green-50 text-green-700 px-5 py-2.5 rounded-lg hover:bg-green-100 font-semibold text-sm flex items-center gap-2">
+        class="w-full sm:w-auto justify-center bg-green-50 text-green-700 px-5 py-2.5 rounded-lg hover:bg-green-100 font-semibold text-sm flex items-center gap-2">
         <i class="fa-solid fa-users"></i> Export Users CSV
       </a>
       <a href="<?= SITE_URL ?>/admin/settings/export?type=blogs"
-        class="bg-blue-50 text-blue-700 px-5 py-2.5 rounded-lg hover:bg-blue-100 font-semibold text-sm flex items-center gap-2">
+        class="w-full sm:w-auto justify-center bg-blue-50 text-blue-700 px-5 py-2.5 rounded-lg hover:bg-blue-100 font-semibold text-sm flex items-center gap-2">
         <i class="fa-solid fa-newspaper"></i> Export Blogs CSV
       </a>
       <a href="<?= SITE_URL ?>/admin/settings/export?type=messages"
-        class="bg-purple-50 text-purple-700 px-5 py-2.5 rounded-lg hover:bg-purple-100 font-semibold text-sm flex items-center gap-2">
+        class="w-full sm:w-auto justify-center bg-purple-50 text-purple-700 px-5 py-2.5 rounded-lg hover:bg-purple-100 font-semibold text-sm flex items-center gap-2">
         <i class="fa-solid fa-envelope"></i> Export Messages CSV
       </a>
     </div>

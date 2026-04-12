@@ -135,7 +135,7 @@ include __DIR__ . '/../includes/header.php';
       <input type="hidden" name="action" value="profile">
 
       <!-- Photo Upload -->
-      <div class="flex items-center gap-6">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
         <div id="photoPreviewWrap">
           <?php if (!empty($user['photo'])): ?>
             <img id="photoPreview" src="<?= sanitize($user['photo']) ?>"
@@ -156,7 +156,7 @@ include __DIR__ . '/../includes/header.php';
       </div>
 
       <!-- Basic Info -->
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label class="text-sm font-medium text-gray-700">Username <span class="text-red-500">*</span></label>
           <input type="text" name="username" value="<?= sanitize($user['username']) ?>" required
@@ -201,7 +201,7 @@ include __DIR__ . '/../includes/header.php';
       <!-- Social Links -->
       <div>
         <p class="text-sm font-medium text-gray-700 mb-3">Social Links</p>
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label class="text-xs text-gray-500 flex items-center gap-1 mb-1"><i class="fa-brands fa-facebook text-blue-600"></i> Facebook</label>
             <input type="url" name="facebook" value="<?= sanitize($user['facebook'] ?? '') ?>"

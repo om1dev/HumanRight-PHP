@@ -44,13 +44,13 @@ include __DIR__ . '/includes/header.php';
 </section>
 
 <!-- Sticky Filter Bar -->
-<div class="bg-white border-b border-gray-100 sticky top-[68px] z-30">
+<div class="bg-white border-b border-gray-100 sticky top-[72px] z-30">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 py-3">
-    <form method="GET" class="flex flex-wrap items-center gap-2">
+    <form method="GET" class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
       <div class="relative">
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
         <input type="text" name="search" value="<?= $search ?>" placeholder="Search..."
-          class="pl-9 pr-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 bg-mist w-44 sm:w-56">
+          class="pl-9 pr-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 bg-mist w-full sm:w-56">
       </div>
       <div class="flex flex-wrap gap-1.5">
         <a href="<?= SITE_URL ?>/blog"
@@ -65,7 +65,7 @@ include __DIR__ . '/includes/header.php';
         <?php endforeach; ?>
       </div>
       <?php if ($search): ?>
-        <button class="bg-primary text-white px-5 py-1.5 rounded-full text-xs font-semibold hover:bg-primary/85 transition">Go</button>
+        <button class="bg-primary text-white px-5 py-2 rounded-full text-xs font-semibold hover:bg-primary/85 transition w-full sm:w-auto">Go</button>
         <a href="<?= SITE_URL ?>/blog<?= $category ? '?category='.urlencode($category) : '' ?>"
           class="text-gray-400 hover:text-gray-600 text-xs font-semibold flex items-center gap-1 transition">
           <i class="fa-solid fa-xmark"></i> Clear

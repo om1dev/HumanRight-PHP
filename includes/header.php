@@ -176,12 +176,12 @@
      NAVBAR
 ══════════════════════════════════════════ -->
 <nav id="nav" class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/60 shadow-[0_8px_32px_rgba(15,23,42,.06)]">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-[72px] flex items-center justify-between gap-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 h-[78px] sm:h-[72px] flex items-center justify-between gap-3">
 
     <!-- Logo -->
-    <a href="<?= SITE_URL ?>/" class="flex items-center gap-3 flex-shrink-0 group">
+    <a href="<?= SITE_URL ?>/" class="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1 sm:flex-none group pr-2">
       <!-- SVG Logo mark -->
-      <div class="relative w-9 h-9 flex-shrink-0">
+      <div class="relative w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0">
         <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
           <rect width="36" height="36" rx="10" fill="#0D1B2A"/>
           <path d="M18 7 L18 29" stroke="#2D3A8C" stroke-width="2" stroke-linecap="round"/>
@@ -190,9 +190,9 @@
           <circle cx="18" cy="29" r="1.5" fill="#C0392B"/>
         </svg>
       </div>
-      <div class="leading-none">
-        <p class="font-serif text-ink text-[1.05rem] leading-none tracking-tight"><?= SITE_NAME ?></p>
-        <p class="text-primary text-[9px] font-semibold tracking-[0.18em] uppercase mt-0.5">Justice · Equity · Rights</p>
+      <div class="leading-tight min-w-0">
+        <p class="font-serif text-ink text-[0.95rem] sm:text-[1.05rem] tracking-tight whitespace-normal break-words max-w-[220px] sm:max-w-none"><?= SITE_NAME ?></p>
+        <p class="text-primary/85 text-[8px] sm:text-[9px] font-semibold tracking-[0.16em] uppercase mt-0.5 whitespace-nowrap">Justice · Equity · Rights</p>
       </div>
     </a>
 
@@ -224,35 +224,49 @@
     </div>
 
     <!-- Hamburger -->
-    <button id="menuBtn" class="md:hidden p-2.5 text-gray-500 hover:text-ink transition-colors rounded-full bg-white/70 border border-gray-100 shadow-sm" aria-label="Menu">
+    <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-11 h-11 text-gray-600 hover:text-ink transition-colors rounded-full bg-white border border-gray-200 shadow-sm flex-shrink-0" aria-label="Menu">
       <i class="fa-solid fa-bars text-lg"></i>
     </button>
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/96 backdrop-blur-xl px-5 py-5 space-y-1 shadow-lg">
-    <?php foreach ([['Home',SITE_URL.'/'],['About',SITE_URL.'/about'],['Insights',SITE_URL.'/blog'],['Contact',SITE_URL.'/contact']] as [$l,$u]): ?>
-    <a href="<?= $u ?>" class="flex items-center justify-between py-3 text-sm font-medium text-gray-700 hover:text-ink border-b border-gray-50 transition-colors">
-      <?= $l ?> <i class="fa-solid fa-chevron-right text-xs text-gray-300"></i>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/98 backdrop-blur-xl px-4 sm:px-5 py-4 shadow-lg">
+    <div class="grid grid-cols-2 gap-2 mb-3">
+      <?php if (isLoggedIn()): ?>
+        <a href="<?= SITE_URL ?>/user/profile" class="ui-button-soft flex items-center justify-center gap-2 px-4 py-3 rounded-2xl text-sm font-semibold text-ink">
+          <i class="fa-solid fa-user text-primary text-xs"></i> Profile
+        </a>
+        <a href="<?= SITE_URL ?>/auth/logout" class="ui-button-soft flex items-center justify-center gap-2 px-4 py-3 rounded-2xl text-sm font-semibold text-red-500">
+          <i class="fa-solid fa-right-from-bracket text-xs"></i> Logout
+        </a>
+      <?php else: ?>
+        <a href="<?= SITE_URL ?>/auth/login" class="ui-button-soft flex items-center justify-center gap-2 px-4 py-3 rounded-2xl text-sm font-semibold text-ink">
+          <i class="fa-solid fa-right-to-bracket text-primary text-xs"></i> Login
+        </a>
+        <a href="<?= SITE_URL ?>/auth/signup" class="ui-button-primary flex items-center justify-center gap-2 px-4 py-3 rounded-2xl text-sm font-semibold text-white">
+          <i class="fa-solid fa-user-plus text-xs"></i> Join
+        </a>
+      <?php endif; ?>
+    </div>
+    <div class="space-y-1">
+      <?php foreach ([['Home',SITE_URL.'/'],['About',SITE_URL.'/about'],['Insights',SITE_URL.'/blog'],['Contact',SITE_URL.'/contact']] as [$l,$u]): ?>
+    <a href="<?= $u ?>" class="flex items-center justify-between py-3.5 px-3 text-sm font-medium text-gray-700 hover:text-ink rounded-2xl hover:bg-gray-50 transition-colors">
+      <span><?= $l ?></span> <i class="fa-solid fa-chevron-right text-xs text-gray-300"></i>
     </a>
     <?php endforeach; ?>
-    <div class="pt-4 flex gap-3">
-      <?php if (isLoggedIn()): ?>
-        <a href="<?= SITE_URL ?>/user/profile" class="text-sm text-ink font-semibold"><?= sanitize($_SESSION['username']) ?></a>
-        <a href="<?= SITE_URL ?>/auth/logout" class="text-sm text-red-500 font-medium">Logout</a>
-      <?php else: ?>
-        <a href="<?= SITE_URL ?>/auth/login" class="text-sm text-gray-600 font-medium">Login</a>
-        <a href="<?= SITE_URL ?>/auth/signup" class="ui-button-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full">Join Us</a>
-      <?php endif; ?>
     </div>
   </div>
 </nav>
 
-<div class="h-[72px]"></div>
+<div class="h-[78px] sm:h-[72px]"></div>
 <main class="flex-1">
 
 <script>
-  document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('hidden'));
+  const publicMenuBtn = document.getElementById('menuBtn');
+  const publicMobileMenu = document.getElementById('mobileMenu');
+  if (publicMenuBtn && publicMobileMenu) {
+    publicMenuBtn.addEventListener('click', () => publicMobileMenu.classList.toggle('hidden'));
+  }
   window.addEventListener('scroll',()=>{
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
     const b=document.getElementById('rbar');

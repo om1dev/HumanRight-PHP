@@ -1,0 +1,1 @@
+C:\xampp\php\php.exe -S localhost:8080 -t "c:\Users\email\OneDrive\Desktop\tempmain\HumanRight-PHP" "c:\Users\email\OneDrive\Desktop\tempmain\HumanRight-PHP\router.php"

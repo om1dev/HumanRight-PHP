@@ -135,7 +135,7 @@ $currentPath = rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: 
 $navItems = [
   ['Home',     SITE_URL.'/',        ['/', '/index.php']],
   ['About',    SITE_URL.'/about',   ['/about']],
-  ['Insights', SITE_URL.'/blog',    ['/blog', '/single-blog']],
+  ['Blog', SITE_URL.'/blog',    ['/blog', '/single-blog']],
   ['Contact',  SITE_URL.'/contact', ['/contact']],
 ];
 $isActive = fn($patterns) => in_array($currentPath, $patterns) || array_filter($patterns, fn($p) => $p !== '/' && str_starts_with($currentPath, $p));
